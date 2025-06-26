@@ -1,5 +1,28 @@
 * {
+<<<<<<< Updated upstream
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+=======
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+}
+
+:root {
+  --tiffany-blue: #9dd9d2;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+}
+>>>>>>> Stashed changes
