@@ -1,6 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 
+@theme {
+  --color-dark: #252a34;
+  --color-default: #eaeaea;
+  --color-accentMint: #08d9d6;
+  --color-accentPink: #ff2e63;
+  --color-error: #fa0606;
+  --color-success: #5eff33;
+  --color-lightBlue: #add8e6;
+  --color-lightGray: #7d7d7d;
+  --color-link: #0065f8;
+  --color-gradient: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+}
+
 body {
   box-sizing: border-box;
   font-family: "DM Sans", sans-serif;
@@ -9,6 +22,7 @@ body {
 
 :root {
   --tiffany-blue: #9dd9d2;
+  --gradient: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
 }
 
 h1,
