@@ -1,0 +1,6 @@
+.preview {
+  min-height: 400px;
+  border: 2px dashed gray;
+  background: white;
+  margin: 2em;
+}
