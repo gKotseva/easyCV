@@ -1,6 +1,5 @@
 .preview {
-  min-height: 400px;
+  min-height: 600px;
   border: 2px dashed gray;
   background: white;
-  margin: 2em;
 }
