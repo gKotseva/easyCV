@@ -1,5 +1,7 @@
 import "./Sections.modules.css";
 
+import { useDraggable } from "@dnd-kit/core";
+
 export const Sections = () => {
   const sections = [
     { id: 1, name: "Personal Info" },
@@ -16,11 +18,37 @@ export const Sections = () => {
   return (
     <div className="sections-panel">
       {sections.map((section) => (
-        <div className="section" key={section.id}>
-          <img src="no-image.png" />
-          <h5>{section.name}</h5>
-        </div>
+        <DraggableSection key={section.id} section={section} />
       ))}
+    </div>
+  );
+};
+
+const DraggableSection = ({ section }) => {
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: `section-${section.id}`,
+    data: {
+      type: "section",
+      section,
+    },
+  });
+
+  const style = {
+    transform: transform
+      ? `translate(${transform.x}px, ${transform.y}px)`
+      : undefined,
+  };
+
+  return (
+    <div
+      className="section"
+      ref={setNodeRef}
+      style={style}
+      {...listeners}
+      {...attributes}
+    >
+      <img src="no-image.png" alt="placeholder" />
+      <h5>{section.name}</h5>
     </div>
   );
 };
