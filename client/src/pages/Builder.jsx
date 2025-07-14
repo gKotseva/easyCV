@@ -1,7 +1,7 @@
 import "./Builder.modules.css";
+
 import { DndContext } from "@dnd-kit/core";
 import { useRef, useState } from "react";
-import { arrayMove } from "@dnd-kit/sortable";
 
 import { Preview } from "../features/builder/Preview";
 import { SidePanel } from "../features/builder/SidePanel";
@@ -14,7 +14,9 @@ export const Builder = () => {
   const handleDragEnd = (event) => {
     const { over, active } = event;
 
-    if (over?.id === "template-drop-zone") {
+    if (!over) return;
+
+    if (over.id === "template-drop-zone") {
       const droppedSectionData = active.data?.current?.section;
 
       if (
@@ -34,7 +36,11 @@ export const Builder = () => {
         </div>
         <div className="main-container">
           <Toolbar cvRef={cvRef} />
-          <Preview droppedSections={droppedSections} cvRef={cvRef} />
+          <Preview
+            droppedSections={droppedSections}
+            setDroppedSections={setDroppedSections}
+            cvRef={cvRef}
+          />
         </div>
       </div>
     </DndContext>
