@@ -20,9 +20,11 @@
   gap: 5px;
   max-width: 30em;
   position: absolute;
-  left: 190px;
-  top: 10px;
-  z-index: 10;
+  left: 15%;
+  top: 5%;
+  background: white;
+  border-radius: 1em;
+  padding: 1em;
 }
 
 .section:hover {
