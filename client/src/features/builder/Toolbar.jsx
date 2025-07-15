@@ -6,14 +6,24 @@ export const Toolbar = ({ cvRef, setIsPreviewMode }) => {
   const generatePdfDownload = () => {
     const element = cvRef.current;
 
-    const opt = {
-      filename: "CV.pdf",
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
-    };
+    setIsPreviewMode(true);
 
-    html2pdf().set(opt).from(element).save();
+    setTimeout(() => {
+      const opt = {
+        filename: "CV.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+      };
+
+      html2pdf()
+        .set(opt)
+        .from(element)
+        .save()
+        .finally(() => {
+          setIsPreviewMode(false);
+        });
+    }, 100);
   };
 
   const generatePdfPreview = () => {

@@ -11,6 +11,10 @@
   background: #f0f9ff;
 }
 
+.preview-hidden-border {
+  border: none !important;
+}
+
 .section-preview {
   display: flex;
   align-items: center;

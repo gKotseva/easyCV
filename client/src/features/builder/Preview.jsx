@@ -12,7 +12,7 @@ import { SectionPreview } from "./SectionPreview";
 import { RxDragHandleDots2 } from "react-icons/rx";
 import { BsTrash } from "react-icons/bs";
 
-const SortableSection = ({ section }) => {
+const SortableSection = ({ section, isPreviewMode }) => {
   const {
     attributes,
     listeners,
@@ -26,27 +26,34 @@ const SortableSection = ({ section }) => {
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? 0.5 : 1,
-    cursor: "default",
+    cursor: isPreviewMode ? "default" : "grab",
   };
 
   return (
     <div ref={setNodeRef} style={style} className="dropped-section">
       <div className="section-preview">
         <SectionPreview section={section} />
-        <div className="section-controllers">
-          <span className="drag-handle" {...attributes} {...listeners}>
-            <RxDragHandleDots2 />
-          </span>
-          <span>
-            <BsTrash />
-          </span>
-        </div>
+        {!isPreviewMode && (
+          <div className="section-controllers">
+            <span className="drag-handle" {...attributes} {...listeners}>
+              <RxDragHandleDots2 />
+            </span>
+            <span>
+              <BsTrash />
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-export const Preview = ({ droppedSections, setDroppedSections, cvRef }) => {
+export const Preview = ({
+  droppedSections,
+  setDroppedSections,
+  cvRef,
+  isPreviewMode,
+}) => {
   const { setNodeRef, isOver } = useDroppable({
     id: "template-drop-zone",
   });
@@ -78,11 +85,17 @@ export const Preview = ({ droppedSections, setDroppedSections, cvRef }) => {
       strategy={verticalListSortingStrategy}
     >
       <div
-        className={`preview ${isOver ? "preview-over" : ""}`}
+        className={`preview ${isOver ? "preview-over" : ""} ${
+          isPreviewMode ? "preview-hidden-border" : ""
+        }`}
         ref={combinedRef}
       >
         {droppedSections.map((section) => (
-          <SortableSection key={section.id} section={section} />
+          <SortableSection
+            key={section.id}
+            section={section}
+            isPreviewMode={isPreviewMode}
+          />
         ))}
       </div>
     </SortableContext>
