@@ -7,6 +7,11 @@
   transition: background 0.3s ease;
 }
 
+.preview-full-page {
+  min-height: 1122px;
+  width: 794px;
+}
+
 .preview-over {
   background: #f0f9ff;
 }
@@ -15,6 +20,7 @@
   border: none !important;
   padding: 0;
   margin: 0;
+  height: 100vh;
 }
 
 .section-preview {

@@ -1,5 +1,4 @@
 import "./Preview.modules.css";
-
 import { useDroppable, useDndMonitor } from "@dnd-kit/core";
 import {
   SortableContext,
@@ -11,6 +10,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { SectionPreview } from "./SectionPreview";
 import { RxDragHandleDots2 } from "react-icons/rx";
 import { BsTrash } from "react-icons/bs";
+import { useState } from "react";
 
 const SortableSection = ({ section, isPreviewMode }) => {
   const {
@@ -64,19 +64,54 @@ export const Preview = ({
     if (cvRef) cvRef.current = node;
   };
 
+  const [overId, setOverId] = useState(null);
+
   useDndMonitor({
+    onDragOver(event) {
+      const { active, over } = event;
+      if (!active || !over) return;
+
+      const isNewSection = !!active.data?.current?.section;
+
+      if (isNewSection) {
+        setOverId(over.id); // запазваме ID-то върху което се дропва
+      }
+    },
+
     onDragEnd(event) {
       const { active, over } = event;
+      if (!over) return;
 
-      if (!over || active.id === over.id) return;
+      const isNewSection = !!active.data?.current?.section;
 
-      const oldIndex = droppedSections.findIndex((s) => s.id === active.id);
-      const newIndex = droppedSections.findIndex((s) => s.id === over.id);
+      if (isNewSection) {
+        const droppedSection = active.data.current.section;
 
-      if (oldIndex !== -1 && newIndex !== -1) {
-        const reordered = arrayMove(droppedSections, oldIndex, newIndex);
-        setDroppedSections(reordered);
+        // Не добавяй повторно, ако вече съществува
+        if (droppedSections.some((s) => s.id === droppedSection.id)) return;
+
+        const targetId = overId || over.id;
+        const insertIndex = droppedSections.findIndex((s) => s.id === targetId);
+
+        if (insertIndex === -1) {
+          setDroppedSections([...droppedSections, droppedSection]); // ако е пуснат извън секция
+        } else {
+          const updated = [...droppedSections];
+          updated.splice(insertIndex, 0, droppedSection);
+          setDroppedSections(updated);
+        }
+      } else {
+        // Пренареждане на вече добавени секции
+        const oldIndex = droppedSections.findIndex((s) => s.id === active.id);
+        const newIndex = droppedSections.findIndex((s) => s.id === over.id);
+
+        if (oldIndex !== -1 && newIndex !== -1 && oldIndex !== newIndex) {
+          const reordered = arrayMove(droppedSections, oldIndex, newIndex);
+          setDroppedSections(reordered);
+        }
       }
+
+      setOverId(null); // нулирай
     },
   });
 
@@ -87,7 +122,7 @@ export const Preview = ({
     >
       <div
         className={`preview ${isOver ? "preview-over" : ""} ${
-          isPreviewMode ? "preview-hidden-border" : ""
+          isPreviewMode ? "preview-hidden-border preview-full-page" : ""
         }`}
         ref={combinedRef}
         style={{ background: color }}
