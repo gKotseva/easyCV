@@ -3,9 +3,8 @@ import "./ColorPicker.modules.css";
 import { useState } from "react";
 import { HexColorPicker } from "react-colorful";
 
-export const ColorPicker = () => {
+export const ColorPicker = ({ color, setColor }) => {
   const [open, setOpen] = useState(false);
-  const [color, setColor] = useState("#fffff");
 
   const handleChange = (e) => {
     setColor(e);

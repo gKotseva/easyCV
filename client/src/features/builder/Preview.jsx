@@ -53,6 +53,7 @@ export const Preview = ({
   setDroppedSections,
   cvRef,
   isPreviewMode,
+  color,
 }) => {
   const { setNodeRef, isOver } = useDroppable({
     id: "template-drop-zone",
@@ -89,6 +90,7 @@ export const Preview = ({
           isPreviewMode ? "preview-hidden-border" : ""
         }`}
         ref={combinedRef}
+        style={{ background: color }}
       >
         {droppedSections.map((section) => (
           <SortableSection

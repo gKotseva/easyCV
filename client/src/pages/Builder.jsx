@@ -11,6 +11,7 @@ export const Builder = () => {
   const cvRef = useRef();
   const [droppedSections, setDroppedSections] = useState([]);
   const [isPreviewMode, setIsPreviewMode] = useState(false);
+  const [color, setColor] = useState("#ffffff");
 
   const handleDragEnd = (event) => {
     const { over, active } = event;
@@ -33,7 +34,7 @@ export const Builder = () => {
     <DndContext onDragEnd={handleDragEnd}>
       <div className="builder-container">
         <div className="side-container">
-          <SidePanel />
+          <SidePanel color={color} setColor={setColor} />
         </div>
         <div className="main-container">
           <Toolbar cvRef={cvRef} setIsPreviewMode={setIsPreviewMode} />
@@ -42,6 +43,7 @@ export const Builder = () => {
             setDroppedSections={setDroppedSections}
             cvRef={cvRef}
             isPreviewMode={isPreviewMode}
+            color={color}
           />
         </div>
       </div>

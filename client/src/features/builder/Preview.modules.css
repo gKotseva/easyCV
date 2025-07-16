@@ -13,6 +13,8 @@
 
 .preview-hidden-border {
   border: none !important;
+  padding: 0;
+  margin: 0;
 }
 
 .section-preview {

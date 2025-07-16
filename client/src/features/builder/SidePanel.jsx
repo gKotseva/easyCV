@@ -9,7 +9,7 @@ import { TbSection } from "react-icons/tb";
 import { IoIosArrowForward } from "react-icons/io";
 import { FaCircleArrowLeft } from "react-icons/fa6";
 
-export const SidePanel = () => {
+export const SidePanel = ({ color, setColor }) => {
   const [activePanel, setActivePanel] = useState(null);
 
   const togglePanel = (panel) => {
@@ -32,7 +32,9 @@ export const SidePanel = () => {
         </div>
       </div>
 
-      {activePanel === "colors" && <ColorPicker />}
+      {activePanel === "colors" && (
+        <ColorPicker color={color} setColor={setColor} />
+      )}
       {activePanel === "sections" && <Sections />}
     </>
   );
