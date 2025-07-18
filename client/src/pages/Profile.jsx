@@ -4,8 +4,14 @@ import { IoSettings } from "react-icons/io5";
 import { TbListDetails } from "react-icons/tb";
 import { MdLiveHelp } from "react-icons/md";
 import { ImProfile } from "react-icons/im";
+import { useState } from "react";
+
+import { Modal } from "../components/Modal";
+import { Layouts } from "../features/builder/Layouts";
 
 export const Profile = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="profile-container">
       <div className="profile-sideBar">
@@ -32,7 +38,12 @@ export const Profile = () => {
       </div>
       <div className="profile-body">
         <div className="profile-header">
-          <button className="orange-button">Create CV</button>
+          <button
+            className="orange-button"
+            onClick={() => setIsModalOpen(true)}
+          >
+            Create CV
+          </button>
         </div>
         <div className="profile-files">
           <h4>Your files</h4>
@@ -46,6 +57,11 @@ export const Profile = () => {
           </div>
         </div>
       </div>
+      {isModalOpen && (
+        <Modal onClose={() => setIsModalOpen(false)}>
+          <Layouts />
+        </Modal>
+      )}
     </div>
   );
 };
