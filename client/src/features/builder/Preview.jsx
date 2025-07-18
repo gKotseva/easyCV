@@ -1,4 +1,5 @@
 import "./Preview.modules.css";
+
 import { useDroppable, useDndMonitor } from "@dnd-kit/core";
 import {
   SortableContext,
@@ -7,10 +8,11 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { SectionPreview } from "./SectionPreview";
 import { RxDragHandleDots2 } from "react-icons/rx";
 import { BsTrash } from "react-icons/bs";
 import { useState } from "react";
+
+import { SectionPreview } from "./SectionPreview";
 
 const SortableSection = ({ section, isPreviewMode }) => {
   const {
@@ -74,7 +76,7 @@ export const Preview = ({
       const isNewSection = !!active.data?.current?.section;
 
       if (isNewSection) {
-        setOverId(over.id); // запазваме ID-то върху което се дропва
+        setOverId(over.id);
       }
     },
 
@@ -87,21 +89,19 @@ export const Preview = ({
       if (isNewSection) {
         const droppedSection = active.data.current.section;
 
-        // Не добавяй повторно, ако вече съществува
         if (droppedSections.some((s) => s.id === droppedSection.id)) return;
 
         const targetId = overId || over.id;
         const insertIndex = droppedSections.findIndex((s) => s.id === targetId);
 
         if (insertIndex === -1) {
-          setDroppedSections([...droppedSections, droppedSection]); // ако е пуснат извън секция
+          setDroppedSections([...droppedSections, droppedSection]);
         } else {
           const updated = [...droppedSections];
           updated.splice(insertIndex, 0, droppedSection);
           setDroppedSections(updated);
         }
       } else {
-        // Пренареждане на вече добавени секции
         const oldIndex = droppedSections.findIndex((s) => s.id === active.id);
         const newIndex = droppedSections.findIndex((s) => s.id === over.id);
 
@@ -111,7 +111,7 @@ export const Preview = ({
         }
       }
 
-      setOverId(null); // нулирай
+      setOverId(null);
     },
   });
 
