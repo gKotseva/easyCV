@@ -1,0 +1,38 @@
+.eremia-education,
+.eremia-work {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.eremia-education .education-details,
+.eremia-work .work-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.eremia-education .education-description ul,
+.eremia-work .work-description ul {
+  margin: 0;
+  padding-left: 1em;
+}
+
+.eremia-soft-skills,
+.eremia-technical-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.eremia-soft-skills .skills,
+.eremia-technical-skills .skills {
+  display: flex;
+  gap: 10px;
+}
+
+.eremia-soft-skills .skills p,
+.eremia-technical-skills .skills p {
+  background: blue;
+  padding: 0.5em 1em;
+  border-radius: 50% / 50px;
+}
