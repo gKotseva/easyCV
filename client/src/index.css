@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;1,300&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 
 * {
   margin: 0;
@@ -8,10 +8,8 @@
 
 body {
   font-family: "Rubik", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 300;
-  font-style: normal;
-  background: var(--background);
+  font-size: 16px;
 }
 
 h1,
@@ -19,69 +17,50 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+button {
   font-family: "Spectral", serif;
-  font-weight: 700;
-  font-style: normal;
 }
 
-:root {
-  --mint: #96e8e0;
-  --light-blue: #99e6ff;
-  --green: #7cd507;
-  --orange: #fed281;
-  --dark-blue: #0099cc;
-  --blue: #66ccff;
-  --background: #f7f7f7;
-  --dark-purple: #48466d;
-}
-
-.orange-button,
-.blue-button,
-.green-button {
-  border: none;
-  padding: 1em 2em;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  border-radius: 20px;
-  box-shadow: -7px 6px 25px 2px rgba(11, 11, 11, 0.202);
-  color: white;
-}
-
-.orange-button {
-  background: hsla(12, 84%, 68%, 1);
-  background: linear-gradient(
-    315deg,
-    hsla(12, 84%, 68%, 1) 4%,
-    hsla(23, 87%, 69%, 1) 24%,
-    hsla(40, 95%, 71%, 1) 79%
-  );
-}
-
-.blue-button {
-  background: hsla(217, 100%, 50%, 1);
-  background: linear-gradient(
-    315deg,
-    hsla(217, 100%, 50%, 1) 4%,
-    hsla(208, 100%, 57%, 1) 24%,
-    hsla(202, 100%, 61%, 1) 54%
-  );
-}
-
-.green-button {
-  background: linear-gradient(
-    315deg,
-    hsla(76, 70%, 50%, 1) 4%,
-    hsla(80, 65%, 48%, 1) 24%,
-    hsla(85, 60%, 46%, 1) 54%
-  );
-}
-
-.orange-button:hover,
-.blue-button:hover,
-.green-button:hover {
+.animation-up:hover {
+  transition: all 0.3s ease;
   cursor: pointer;
   transform: translateY(-3px);
-  box-shadow: -7px 10px 30px 3px rgba(11, 11, 11, 0.3);
+}
+
+.transition {
   transition: all 0.3s ease;
+}
+
+.btn {
+  border: none;
+  border-radius: 1em;
+  padding: 0.5em 2em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.btn-green {
+  background: linear-gradient(180deg, #8ff831, #51cf31, #2cdd00);
+  color: #086d19;
+  font-weight: bolder;
+}
+
+.btn-orange {
+  background: linear-gradient(180deg, #facd6a, #ffc137, #eba859);
+  color: #804e03;
+  font-weight: bolder;
+}
+
+.btn-blue {
+  background: linear-gradient(180deg, #6de5ed, #09bdbd, #009b9b);
+  color: #005766;
+  font-weight: bolder;
+}
+
+.btn:hover {
+  cursor: pointer;
+  transform: translateY(-3px);
 }
