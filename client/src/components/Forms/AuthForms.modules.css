@@ -1,0 +1,47 @@
+.input-field,
+.auth-form-body form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: center;
+}
+
+.auth-form-container h2 {
+  text-transform: uppercase;
+}
+
+.auth-form-container,
+.auth-form-heading,
+.auth-form-body,
+.auth-form-footer {
+  padding: 2em;
+  text-align: center;
+}
+
+.auth-form-body form > div {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+
+.auth-form-body input {
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  border: 1px solid black;
+  outline: none;
+  background: white;
+}
+
+.auth-form-body label {
+  text-transform: uppercase;
+  margin-left: 0.3em;
+}
+
+.auth-form-footer span {
+  text-decoration: underline;
+  color: blue;
+}
+
+.auth-form-footer span:hover {
+  cursor: pointer;
+}
