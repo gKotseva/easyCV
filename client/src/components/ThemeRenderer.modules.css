@@ -1,0 +1,31 @@
+.builder-preview-section {
+  position: relative;
+  padding: 1em;
+}
+
+.builder-preview-section .control-icons {
+  position: absolute;
+  right: 1em;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 1em;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.builder-preview-section:hover {
+  border: 1px solid #f3bc69;
+  border-radius: 1em;
+  background: #ffdba450;
+  padding: 2em;
+}
+
+.builder-preview-section:hover .control-icons {
+  opacity: 1;
+  pointer-events: auto;
+  color: #f3a024;
+}
+
+.builder-preview-section .control-icons svg {
+  font-size: 1.2em;
+}
