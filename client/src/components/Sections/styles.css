@@ -1,0 +1,118 @@
+.section-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+}
+
+.section-body {
+  margin-left: 0.3em;
+  margin-top: 0.5em;
+}
+
+.soft_skills-entry,
+.technical_skills-entry {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+
+.section-container .field-dates {
+  display: flex;
+  gap: 2px;
+}
+
+.field.description {
+  margin-top: 1em;
+}
+
+.section-container .contact_information-entry {
+  display: flex;
+  gap: 1em;
+}
+
+.field.full_name {
+  font-weight: bold;
+}
+
+/* Theme1 */
+
+.section-container.theme1 .technical_skills-entry .field,
+.section-container.theme1 .soft_skills-entry .field {
+  background: green;
+  padding: 0.5em 1em;
+  border-radius: 1em;
+  color: white;
+}
+
+/* Theme2 */
+
+.section-container.theme2 .work_experience-entry,
+.section-container.theme2 .education-entry {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+}
+
+.section-container.theme2 .work_experience-entry .field.job_title,
+.section-container.theme2 .education-entry .field.degree {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.section-container.theme2 .field-dates {
+  justify-self: end;
+}
+
+.section-container.theme2 .work_experience-entry .field.location,
+.section-container.theme2 .education-entry .field.location,
+.section-container.theme2 .education-entry .graduation_year {
+  grid-column: 2;
+  justify-self: end;
+}
+
+.section-container.theme2 .work_experience-entry .field.company,
+.section-container.theme2 .education-entry .field.school {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.section-container.theme2 .work_experience-entry .field.description,
+.section-container.theme2 .education-entry .field.description {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+}
+
+/* Theme3 */
+
+.section-container.theme3 .field.summary_text {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 1em 0em;
+}
+
+.section-container.theme3 .work_experience-entry,
+.section-container.theme3 .education-entry {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.section-container.theme3 .work_experience-entry .field:nth-child(1),
+.section-container.theme3 .work_experience-entry .field:nth-child(2),
+.section-container.theme3 .work_experience-entry .field:nth-child(3),
+.section-container.theme3 .education-entry .field:nth-child(1),
+.section-container.theme3 .education-entry .field:nth-child(2),
+.section-container.theme3 .education-entry .field:nth-child(3) {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.section-container.theme3 .description {
+  flex-basis: 100%;
+}
+
+.section-container.theme3 .field.full_name {
+  text-transform: uppercase;
+  margin-bottom: 1em;
+  font-weight: bold;
+}
