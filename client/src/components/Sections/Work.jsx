@@ -1,6 +1,15 @@
 import "./styles.css";
 
+import { useCV } from "../../contexts/CV";
+import { InlineEdit } from "../InlineEdit";
+
 export const Work = ({ theme, section }) => {
+  const { updateField } = useCV();
+
+  const handleSave = (value, section_id, field) => {
+    updateField(section_id, field, value);
+  };
+
   return (
     <>
       <div className={`section-container ${theme}`}>
@@ -19,7 +28,12 @@ export const Work = ({ theme, section }) => {
               if (field === "end_date") return null;
               return (
                 <div key={field} className={`field ${field}`}>
-                  {field}
+                  <InlineEdit
+                    initialValue={field}
+                    onSave={(value) =>
+                      handleSave(value, section.section_id, field)
+                    }
+                  />
                 </div>
               );
             })}
