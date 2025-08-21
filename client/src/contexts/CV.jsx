@@ -17,8 +17,26 @@ export function CVProvider({ children }) {
     fetchSections();
   }, []);
 
+  const updateField = async (sectionId, field, value) => {
+    setSections((prevSections) =>
+      prevSections.map((section) =>
+        section.section_id === sectionId
+          ? {
+              ...section,
+              values: {
+                ...(section.values || {}),
+                [field]: value,
+              },
+            }
+          : section
+      )
+    );
+  };
+
   return (
-    <CVContext.Provider value={{ columns, theme, styling, sections }}>
+    <CVContext.Provider
+      value={{ columns, theme, styling, sections, updateField }}
+    >
       {children}
     </CVContext.Provider>
   );
