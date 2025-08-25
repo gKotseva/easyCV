@@ -1,0 +1,36 @@
+.builder-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.side-container {
+  flex: 0 0 15%;
+  background: grey;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.body-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.action-buttons {
+  padding: 2em 1em;
+  display: flex;
+  gap: 1em;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.cv-container {
+  border: 1px dashed grey;
+  width: 80%;
+  padding: 1em;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  border-radius: 1em;
+}
