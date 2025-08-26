@@ -11,7 +11,7 @@ import { Introduction } from "../Sections/Introduction";
 import { CVControllers } from "../CVControllers";
 
 export const Builder = () => {
-  const { columns, theme, styling, sections, saveCV } = useCV();
+  const { columns, theme, styling, sections, saveCV, name, setName } = useCV();
 
   const components = {
     introduction: Introduction,
@@ -25,7 +25,16 @@ export const Builder = () => {
 
   return (
     <div className="builder-container">
-      <div className="side-container"></div>
+      <div className="side-container">
+        <div className="cv-name">
+          <label>Document title</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+      </div>
       <div className="body-container">
         <div className="action-buttons">
           <CVControllers saveHandler={saveCV} />

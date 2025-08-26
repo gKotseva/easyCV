@@ -34,3 +34,25 @@
   margin-bottom: 1em;
   border-radius: 1em;
 }
+
+.side-container {
+  padding: 1em;
+}
+
+.cv-name {
+  color: white;
+}
+
+.cv-name input {
+  padding: 0.5em 1em;
+  border: 1px solid white;
+  border-radius: 1em;
+  background: inherit;
+  margin-top: 10px;
+  color: white;
+}
+
+.cv-name input:focus {
+  border: 2px solid orange;
+  outline: none;
+}
