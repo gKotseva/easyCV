@@ -1,9 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getSections } from "../handlers/cv";
+import { getSections, save, update } from "../handlers/cv";
+import { useNotification } from "./Notification";
 
 const CVContext = createContext();
 
 export function CVProvider({ children }) {
+  const { showNotification } = useNotification();
+
+  const [id, setId] = useState(null);
   const [name, setName] = useState("");
   const [columns, setColumns] = useState(1);
   const [theme, setTheme] = useState("theme1");
@@ -37,7 +41,23 @@ export function CVProvider({ children }) {
   };
 
   const saveCV = async () => {
+    if (!name) {
+      showNotification("Please enter a title for your CV", "error");
+      return;
+    }
+
     setHasChanges(false);
+    let response;
+    if (id !== null) {
+      console.log(name);
+      response = await update(name, columns, theme, styling, sections, id);
+    } else {
+      console.log(name);
+      response = await save(name, columns, theme, styling, sections, id);
+      setId(response.cvId);
+    }
+
+    showNotification("CV Saved", "success");
   };
 
   useEffect(() => {
@@ -57,7 +77,16 @@ export function CVProvider({ children }) {
 
   return (
     <CVContext.Provider
-      value={{ columns, theme, styling, sections, updateField, saveCV }}
+      value={{
+        columns,
+        theme,
+        styling,
+        sections,
+        updateField,
+        saveCV,
+        name,
+        setName,
+      }}
     >
       {children}
     </CVContext.Provider>
