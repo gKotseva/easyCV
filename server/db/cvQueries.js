@@ -5,6 +5,7 @@ exports.getSections = () => {
   cs.cv_section_id   AS section_id,
   cs.cv_section_name AS section_name,
   cs.cv_section_label AS section_label,
+  cs.multiple,
   CAST(
     CONCAT(
       '[',
@@ -15,33 +16,28 @@ exports.getSections = () => {
 FROM cv_sections cs
 JOIN section_fields sf
   ON cs.cv_section_id = sf.section_id
-GROUP BY cs.cv_section_id, cs.cv_section_name, cs.cv_section_label
-ORDER BY 
-  CASE cs.cv_section_label
-    WHEN 'introduction'        THEN 1
-    WHEN 'contact_information' THEN 2
-    WHEN 'summary'             THEN 3
-    WHEN 'work_experience'     THEN 4
-    WHEN 'education'           THEN 5
-    WHEN 'soft_skills'         THEN 6
-    WHEN 'technical_skills'    THEN 7
-    ELSE 999
-  END;`;
+GROUP BY cs.cv_section_id, cs.cv_section_name, cs.cv_section_label;`;
 
   return executeQuery(query);
 };
 
 exports.saveCV = (userId, title, theme, columns, data) => {
-  const query = `INSERT INTO cvs(user_id, title, theme, columns, data) VALUES(?, ?, ?, ?, ?)`;
+  const query = `INSERT INTO cv_details(user_id, title, theme, columns, data) VALUES(?, ?, ?, ?, ?)`;
 
   return executeQuery(query, [userId, title, theme, columns, data]);
 };
 
-exports.updateCV = (userId, title, theme, columns, data, cvId) => {
+exports.updateCV = (title, theme, columns, data, cvId) => {
   const query = `
-        UPDATE cvs
+        UPDATE cv_details
         SET title = ?, theme = ?, columns = ?, data = ?
         WHERE cv_id = ?
       `;
-  executeQuery(query, [title || null, theme, columns, data, cvId]);
+  return executeQuery(query, [title, theme, columns, data, cvId]);
+};
+
+exports.getDocuments = (userId) => {
+  const query = `SELECT * FROM cv_details WHERE user_id=?`;
+
+  return executeQuery(query, [userId]);
 };

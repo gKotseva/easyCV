@@ -39,3 +39,12 @@ export const update = async (name, columns, theme, styling, sections, cvId) => {
     throw error;
   }
 };
+
+export const getDocuments = async (userId) => {
+  try {
+    const response = await request.get(`/api/cv/documents?userId=${userId}`);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};

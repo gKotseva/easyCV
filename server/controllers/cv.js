@@ -1,4 +1,9 @@
-const { getSections, saveCV, updateCV } = require("../db/cvQueries");
+const {
+  getSections,
+  saveCV,
+  updateCV,
+  getDocuments,
+} = require("../db/cvQueries");
 const { buildSections } = require("../utils/cv");
 
 const router = require("express").Router();
@@ -35,9 +40,37 @@ router.put("/update", async (req, res) => {
   const { name, columns, theme, styling, sections, cvId } = req.body;
   try {
     const cvData = buildSections(sections);
-    await updateCV(1, name, theme, columns, JSON.stringify(cvData), cvId);
+    const response = await updateCV(
+      name,
+      theme,
+      columns,
+      JSON.stringify(cvData),
+      cvId
+    );
+    res.status(201).json({ response });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
-    res.status(201);
+router.get("/documents", async (req, res) => {
+  const { userId } = req.query;
+  try {
+    const documents = await getDocuments(userId);
+    const sections = await getSections();
+    const formattedDocuments = documents.map((doc) => {
+      const mergedSections = sections.map((section) => ({
+        ...section,
+        values: doc.data?.[section.section_id] || (section.multiple ? [] : {}),
+      }));
+
+      return {
+        ...doc,
+        sections: mergedSections,
+      };
+    });
+
+    res.status(201).json(formattedDocuments);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
