@@ -3,7 +3,7 @@ import "./styles.css";
 import { useCV } from "../../contexts/CV";
 import { InlineEdit } from "../InlineEdit";
 
-export const Introduction = ({ theme, section }) => {
+export const Introduction = ({ theme, section, mode }) => {
   const { updateField } = useCV();
 
   const handleSave = (value, section_id, field) => {
@@ -18,7 +18,7 @@ export const Introduction = ({ theme, section }) => {
             {section.fields.map((field) => (
               <div key={field} className={`field ${field}`}>
                 <InlineEdit
-                  initialValue={field}
+                  initialValue={section.values?.[field] || ""}
                   onSave={(value) =>
                     handleSave(value, section.section_id, field)
                   }
