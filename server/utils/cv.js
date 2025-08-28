@@ -60,13 +60,15 @@ exports.buildSections = (sections) => {
   const cvData = {};
 
   sections.forEach((section) => {
-    const sectionObj = {};
-
-    section.fields.forEach((field) => {
-      sectionObj[field] = section.values?.[field] ?? null;
-    });
-
-    cvData[section.section_id] = sectionObj;
+    if (section.multiple === 1) {
+      cvData[section.section_id] = (section.values || []).map((item) =>
+        Object.fromEntries(section.fields.map((f) => [f, item[f] ?? ""]))
+      );
+    } else {
+      cvData[section.section_id] = Object.fromEntries(
+        section.fields.map((f) => [f, section.values?.[f] ?? ""])
+      );
+    }
   });
 
   return cvData;
