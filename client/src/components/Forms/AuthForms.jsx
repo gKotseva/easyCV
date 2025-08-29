@@ -3,7 +3,7 @@ import "./AuthForms.modules.css";
 import { useForm } from "../../hooks/useForm";
 import { login, register } from "../../handlers/auth";
 
-export const AuthForms = ({ formName = "register" }) => {
+export const AuthForms = ({ formName }) => {
   const handler = formName === "login" ? login : register;
 
   const { values, onChange, onSubmit } = useForm({
