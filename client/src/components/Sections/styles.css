@@ -1,118 +1,171 @@
-.section-container {
+/* ============================== */
+
+.theme2 .education .entry,
+.theme1 .education .entry {
   display: flex;
   flex-direction: column;
-  margin-bottom: 2em;
+  gap: 0.5rem;
+  align-items: flex-start;
 }
 
-.section-body {
-  margin-left: 0.3em;
+.soft_skills,
+.technical_skills {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 1em;
   margin-top: 0.5em;
+  text-align: center;
 }
 
-.soft_skills-entry,
-.technical_skills-entry {
-  display: flex;
-  gap: 1em;
-  flex-wrap: wrap;
+.education .entry div:nth-child(1) {
+  font-weight: bold;
 }
 
-.section-container .field-dates {
-  display: flex;
-  gap: 2px;
-}
-
-.field.description {
+.education,
+.work_experience,
+.summary,
+.technical_skills,
+.contact {
   margin-top: 1em;
 }
 
-.section-container .contact_information-entry {
+/* THEME1 */
+
+.section-container.theme1 .soft_skills .field,
+.section-container.theme1 .technical_skills .field {
+  background: lightblue;
+  padding: 0.5em 1em;
+  border-radius: 1em;
+}
+
+.section-container.theme1 .field {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5em;
+}
+
+.entries,
+.entries,
+.entries {
+  display: flex;
+  justify-content: space-between;
+}
+
+.remove {
+  align-self: center;
+}
+
+.add-more-button {
+  margin-top: 1em;
+}
+
+/* THEME 3 AND 4 */
+
+.theme3 .contact,
+.theme4 .contact {
   display: flex;
   gap: 1em;
 }
 
-.field.full_name {
-  font-weight: bold;
-}
-
-/* Theme1 */
-
-.section-container.theme1 .technical_skills-entry .field,
-.section-container.theme1 .soft_skills-entry .field {
-  background: green;
+.section-container.theme4 .soft_skills .field,
+.section-container.theme4 .technical_skills .field {
+  background: lightblue;
   padding: 0.5em 1em;
   border-radius: 1em;
-  color: white;
 }
 
-/* Theme2 */
-
-.section-container.theme2 .work_experience-entry,
-.section-container.theme2 .education-entry {
+.theme3 .education .entry,
+.theme4 .education .entry {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: start;
+  gap: 0.75rem 1rem;
+  grid-template-areas:
+    "school location"
+    "degree graduation_year"
+    "field_of_study graduation_year"
+    "description description";
 }
 
-.section-container.theme2 .work_experience-entry .field.job_title,
-.section-container.theme2 .education-entry .field.degree {
-  grid-column: 1;
-  grid-row: 1;
+.theme3 .education .entry [data-field="school"],
+.theme4 .education .entry [data-field="school"] {
+  grid-area: school;
 }
 
-.section-container.theme2 .field-dates {
-  justify-self: end;
+.theme3 .education .entry [data-field="degree"],
+.theme4 .education .entry [data-field="degree"] {
+  grid-area: degree;
 }
 
-.section-container.theme2 .work_experience-entry .field.location,
-.section-container.theme2 .education-entry .field.location,
-.section-container.theme2 .education-entry .graduation_year {
-  grid-column: 2;
-  justify-self: end;
+.theme3 .education .entry [data-field="field_of_study"],
+.theme4 .education .entry [data-field="field_of_study"] {
+  grid-area: field_of_study;
 }
 
-.section-container.theme2 .work_experience-entry .field.company,
-.section-container.theme2 .education-entry .field.school {
-  grid-column: 1;
-  grid-row: 2;
+.theme3 .education .entry [data-field="location"],
+.theme4 .education .entry [data-field="location"] {
+  grid-area: location;
+  text-align: right;
+  color: grey;
 }
 
-.section-container.theme2 .work_experience-entry .field.description,
-.section-container.theme2 .education-entry .field.description {
-  grid-column: 1 / span 2;
-  grid-row: 3;
+.theme3 .education .entry [data-field="graduation_year"],
+.theme4 .education .entry [data-field="graduation_year"] {
+  grid-area: graduation_year;
+  text-align: right;
+  color: grey;
 }
 
-/* Theme3 */
-
-.section-container.theme3 .field.summary_text {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  padding: 1em 0em;
+.theme3 .education .entry [data-field="description"],
+.theme4 .education .entry [data-field="description"] {
+  grid-area: description;
 }
 
-.section-container.theme3 .work_experience-entry,
-.section-container.theme3 .education-entry {
+.theme1 .work_experience .entry,
+.theme2 .work_experience .entry {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
 }
 
-.section-container.theme3 .work_experience-entry .field:nth-child(1),
-.section-container.theme3 .work_experience-entry .field:nth-child(2),
-.section-container.theme3 .work_experience-entry .field:nth-child(3),
-.section-container.theme3 .education-entry .field:nth-child(1),
-.section-container.theme3 .education-entry .field:nth-child(2),
-.section-container.theme3 .education-entry .field:nth-child(3) {
-  display: inline-block;
-  margin-right: 8px;
+.theme3 .work_experience .entry,
+.theme4 .work_experience .entry {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1rem;
+  grid-template-areas:
+    "job_title location"
+    "company dates"
+    "description description";
 }
 
-.section-container.theme3 .description {
-  flex-basis: 100%;
+.theme3 .work_experience .entry [data-field="job_title"],
+.theme4 .work_experience .entry [data-field="job_title"] {
+  grid-area: job_title;
 }
 
-.section-container.theme3 .field.full_name {
-  text-transform: uppercase;
-  margin-bottom: 1em;
-  font-weight: bold;
+.theme3 .work_experience .entry [data-field="company"],
+.theme4 .work_experience .entry [data-field="company"] {
+  grid-area: company;
+}
+
+.theme3 .work_experience .entry [data-field="location"],
+.theme4 .work_experience .entry [data-field="location"] {
+  grid-area: location;
+  text-align: right;
+  color: grey;
+}
+
+.theme3 .work_experience .entry [data-field="dates"],
+.theme4 .work_experience .entry [data-field="dates"] {
+  grid-area: dates;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.25rem;
+  color: grey;
+}
+
+.theme3 .work_experience .entry [data-field="description"],
+.theme4 .work_experience .entry [data-field="description"] {
+  grid-area: description;
 }
