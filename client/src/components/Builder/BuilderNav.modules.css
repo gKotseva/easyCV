@@ -1,0 +1,93 @@
+.logo-container img {
+  width: 3em;
+  height: auto;
+}
+
+.builder-controllers {
+  display: flex;
+  width: 100%;
+  padding: 0.5em 1em;
+  gap: 0;
+}
+
+.logo-container {
+  flex: 0 0 20%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.formatting-container {
+  flex: 0 0 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formatting-nav {
+  display: flex;
+  padding: 0.5em 1em;
+  border-radius: 2em;
+  gap: 2em;
+  background: #363b42;
+  align-items: center;
+}
+
+.styling {
+  display: flex;
+  gap: 1em;
+}
+
+.styling p {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  cursor: pointer;
+}
+
+.styling svg {
+  font-size: 1.5em;
+}
+
+.control {
+  display: flex;
+  gap: 0.5em;
+}
+
+.control button {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5em 1em;
+  border-radius: 2em;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+.menu-container {
+  flex: 0 0 20%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.menu-container div {
+  display: flex;
+  align-items: center;
+  background: #363b42;
+  border-radius: 2em;
+  padding: 0.3em;
+  padding-right: 1em;
+  gap: 1em;
+}
+
+.menu-container p {
+  padding: 0.5em 1em;
+  background: rgb(228, 228, 228);
+  color: black;
+  border-radius: 2em;
+}
+
+.menu-container svg {
+  font-size: 2em;
+}
