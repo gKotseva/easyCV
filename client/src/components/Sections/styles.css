@@ -12,9 +12,8 @@
 .technical_skills {
   display: flex;
   gap: 20px;
-  margin-bottom: 1em;
-  margin-top: 0.5em;
   text-align: center;
+  margin-top: 0.5em;
 }
 
 .education .entry div:nth-child(1) {
@@ -24,7 +23,6 @@
 .education,
 .work_experience,
 .summary,
-.technical_skills,
 .contact {
   margin-top: 1em;
 }
@@ -42,21 +40,6 @@
   display: flex;
   flex-direction: column;
   margin-top: 0.5em;
-}
-
-.entries,
-.entries,
-.entries {
-  display: flex;
-  justify-content: space-between;
-}
-
-.remove {
-  align-self: center;
-}
-
-.add-more-button {
-  margin-top: 1em;
 }
 
 /* THEME 3 AND 4 */

@@ -26,16 +26,14 @@ export const SectionRenderer = ({ testTheme }) => {
   return sections.map((section) => {
     const Component = components[section.section_label];
     return Component ? (
-      <div key={section.section_label}>
-        <SectionControllers>
-          <Component
-            theme={CV?.theme || testTheme}
-            section={section}
-            data={CV?.data?.[section.section_id] || section.fields}
-            styling={CV?.style?.[section.section_id] || []}
-          />
-        </SectionControllers>
-      </div>
+      <SectionControllers>
+        <Component
+          theme={CV?.theme || testTheme}
+          section={section}
+          data={CV?.data?.[section.section_id] || section.fields}
+          styling={CV?.style?.[section.section_id] || []}
+        />
+      </SectionControllers>
     ) : null;
   });
 };

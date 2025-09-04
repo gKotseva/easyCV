@@ -3,7 +3,7 @@
 .controllers-container {
   background: transparent;
   position: relative;
-  transition: background 0.3s ease;
+  transition: background 0.5s ease;
   padding: 1em;
   border-radius: 1em;
 }
@@ -20,7 +20,6 @@
   top: 0.5em;
   right: 0.5em;
   display: flex;
-  gap: 1em;
 }
 
 .controllers-container:hover .controller-buttons {
@@ -38,32 +37,51 @@
   cursor: pointer;
 }
 
-/* ============================== */
-
-.add-more-button {
-  background: orange;
-  color: white;
-  font-weight: bold;
-  border: none;
-  padding: 0.5em 1em;
-  width: 8em;
-  border-radius: 1em;
-  height: 2em;
+.inner-container {
+  display: none;
+  gap: 0.3em;
+  align-items: center;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.add-more-button:hover {
-  cursor: pointer;
-}
-
-.remove-entry {
-  width: 2.5em;
-  background: red;
-  color: white;
+.add-entry-button,
+.remove-entry-button {
+  width: 1.5em;
+  height: 1.5em;
+  min-width: 0;
+  min-height: 0;
   border: none;
   border-radius: 50%;
-  padding: 0.5em 1em;
+  color: white;
+  font-size: 0.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.remove-entry:hover {
-  cursor: pointer;
+.add-entry-button {
+  background: green;
+}
+
+.remove-entry-button {
+  background: red;
+}
+
+.add-entry-button:hover,
+.remove-entry-button:hover {
+  transform: scale(1.1);
+}
+
+.controllers-container:hover .inner-container {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.entries .inner-container {
+  margin-top: 0.5em;
 }

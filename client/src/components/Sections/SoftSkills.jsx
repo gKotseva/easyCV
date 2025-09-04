@@ -1,6 +1,7 @@
 import "./styles.css";
 import { useSectionItems } from "../../hooks/useSectionItems";
 import { InlineEdit } from "../InlineEdit";
+import { InnerControllers } from "../SectionControllers";
 
 export const SoftSkills = ({ theme, section, data, styling }) => {
   const { handleSave, handleAddMore, handleRemove } = useSectionItems();
@@ -18,25 +19,10 @@ export const SoftSkills = ({ theme, section, data, styling }) => {
                 }
               />
             </div>
-            <div className="remove">
-              <button
-                onClick={() => handleRemove(section.section_id, index)}
-                className="remove-entry"
-              >
-                x
-              </button>
-            </div>
+            <InnerControllers section={section} />
           </div>
         ))}
       </div>
-      {section.multiple && (
-        <button
-          onClick={() => handleAddMore(section)}
-          className="add-more-button"
-        >
-          Add more
-        </button>
-      )}
     </div>
   );
 };
