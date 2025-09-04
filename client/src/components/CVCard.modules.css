@@ -1,0 +1,74 @@
+.card-container .card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  width: 20em;
+  height: 25em;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-preview {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cv-preview-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transform-origin: top left;
+  object-fit: contain;
+  pointer-events: none;
+  overflow: hidden;
+  zoom: 0.5;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, #363b42 0%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card-data {
+  position: relative;
+  z-index: 2;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: white;
+}
+
+.card-data-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ccc;
+  font-style: oblique;
+}
+
+.control-cv {
+  letter-spacing: 0.5em;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+}
+
+.control-cv:hover {
+  color: #00c8aa;
+}
