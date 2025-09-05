@@ -1,4 +1,4 @@
-import { useCV } from "../context/cv";
+import { useCV } from "../context/CV";
 
 export const useSectionItems = () => {
   const { CV, setCV } = useCV();

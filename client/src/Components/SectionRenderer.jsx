@@ -1,4 +1,4 @@
-import { useCV } from "../context/cv";
+import { useCV } from "../context/CV";
 import { SectionControllers } from "./SectionControllers";
 import { Contact } from "./Sections/Contact";
 import { Education } from "./Sections/Education";
