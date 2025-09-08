@@ -1,8 +1,11 @@
+import { useState } from "react";
 import "./CVCard.modules.css";
 
 import { SectionRenderer } from "./SectionRenderer";
 
 export const CVCard = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="card-container">
       <div className="body">
@@ -16,7 +19,18 @@ export const CVCard = () => {
             <h4>CV Name</h4>
             <div className="card-data-row">
               <p>Modified on:</p>
-              <h4 className="control-cv animation-up">...</h4>
+              <div className="menu-wrapper">
+                <h4
+                  className="control-cv animation-up"
+                  onClick={() => setOpen(!open)}
+                >
+                  ...
+                </h4>
+                <div className={`dropdown-menu ${open ? "show" : ""}`}>
+                  <button>Rename</button>
+                  <button>Delete</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
