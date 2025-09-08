@@ -29,7 +29,7 @@
   padding: 0.5em 1em;
   border-radius: 2em;
   gap: 2em;
-  background: #363b42;
+  background: var(--dark-background);
   align-items: center;
 }
 

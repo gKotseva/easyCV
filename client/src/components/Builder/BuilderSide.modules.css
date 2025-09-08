@@ -13,7 +13,7 @@
 
 .content-card,
 .templates-card {
-  background: #363b42;
+  background: var(--dark-background);
   display: flex;
   align-items: center;
   border-radius: 1em;
