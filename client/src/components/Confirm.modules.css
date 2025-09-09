@@ -1,0 +1,32 @@
+.confirm-container {
+  background: #1f252d;
+  padding: 1.5em;
+  border-radius: 10px;
+  color: white;
+  min-width: 250px;
+  text-align: center;
+}
+
+.confirm-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1em;
+}
+
+.confirm-yes {
+  background: #00c8aa;
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.confirm-no {
+  background: #444;
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  cursor: pointer;
+}
