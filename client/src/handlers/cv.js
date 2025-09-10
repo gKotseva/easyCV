@@ -26,3 +26,12 @@ export const renameDocument = async (cvId, title) => {
     throw error;
   }
 };
+
+export const getAllSections = async () => {
+  try {
+    const response = await request.get(`/api/cv/sections`);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
