@@ -10,56 +10,48 @@ export const Work = ({ theme, section, data, styling }) => {
     <div className={`section-container ${theme}`}>
       <h3 className="section-title">{section.section_name}</h3>
       <div className={section.section_label}>
-        {data.map((entry, entryIndex) => (
-          <div key={entryIndex} className="entries">
-            <div className="entry">
-              {Object.entries(entry).map(([field, value]) => {
-                if (field === "start_date") {
-                  return (
-                    <div
-                      data-field="dates"
-                      className="dates-container"
-                      key="dates"
-                    >
-                      <InlineEdit
-                        initialValue={entry.start_date || "Enter start_date"}
-                        onSave={(newValue) =>
-                          handleSave(
-                            newValue,
-                            section,
-                            "start_date",
-                            entryIndex
-                          )
-                        }
-                      />
-                      {" - "}
-                      <InlineEdit
-                        initialValue={entry.end_date || "Enter end_date"}
-                        onSave={(newValue) =>
-                          handleSave(newValue, section, "end_date", entryIndex)
-                        }
-                      />
-                    </div>
-                  );
-                }
-
-                if (field === "end_date") return null;
-
+        <div className="entries">
+          <div className="entry">
+            {Object.entries(data).map(([field, value]) => {
+              if (field === "start_date") {
                 return (
-                  <div data-field={field} key={field}>
+                  <div
+                    data-field="dates"
+                    className="dates-container"
+                    key="dates"
+                  >
                     <InlineEdit
-                      initialValue={value || `Enter ${field}`}
+                      initialValue={entry.start_date || "Enter start_date"}
                       onSave={(newValue) =>
-                        handleSave(newValue, section, field, entryIndex)
+                        handleSave(newValue, section, "start_date", entryIndex)
+                      }
+                    />
+                    <InlineEdit
+                      initialValue={entry.end_date || "Enter end_date"}
+                      onSave={(newValue) =>
+                        handleSave(newValue, section, "end_date", entryIndex)
                       }
                     />
                   </div>
                 );
-              })}
-            </div>
-            <InnerControllers section={section} />
+              }
+
+              if (field === "end_date") return null;
+
+              return (
+                <div data-field={field} key={field}>
+                  <InlineEdit
+                    initialValue={value || `Enter ${field}`}
+                    onSave={(newValue) =>
+                      handleSave(newValue, section, field, entryIndex)
+                    }
+                  />
+                </div>
+              );
+            })}
           </div>
-        ))}
+          <InnerControllers section={section} />
+        </div>
       </div>
     </div>
   );

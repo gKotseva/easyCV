@@ -5,20 +5,16 @@ import { InlineEdit } from "../InlineEdit";
 export const Summary = ({ theme, section, data, styling }) => {
   const { handleSave } = useSectionItems();
 
-  const entry = Array.isArray(data) ? data[0] : data;
-
   return (
     <div className={`section-container ${theme}`}>
       <h3 className="section-title">{section.section_name}</h3>
       <div className={section.section_label}>
-        {Object.entries(entry).map(([field, value]) => (
-          <div data-field={field} key={field}>
-            <InlineEdit
-              initialValue={value || `Enter ${field}`}
-              onSave={(newValue) => handleSave(newValue, section, field)}
-            />
-          </div>
-        ))}
+        <div data-field={data} key={data}>
+          <InlineEdit
+            initialValue={data.value || `Enter ${data}`}
+            onSave={(newValue) => handleSave(newValue, section, data)}
+          />
+        </div>
       </div>
     </div>
   );

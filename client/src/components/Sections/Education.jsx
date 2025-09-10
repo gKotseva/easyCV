@@ -10,24 +10,22 @@ export const Education = ({ theme, section, data, styling }) => {
     <div className={`section-container ${theme}`}>
       <h3 className="section-title">{section.section_name}</h3>
       <div className={section.section_label}>
-        {data.map((entry, entryIndex) => (
-          <div key={entryIndex} className="entries">
-            <div className="entry">
-              {Object.entries(entry).map(([field, value]) => (
-                <div data-field={field} key={field}>
-                  <InlineEdit
-                    data-field={field}
-                    initialValue={value || `Enter ${field}`}
-                    onSave={(newValue) =>
-                      handleSave(newValue, section, field, entryIndex)
-                    }
-                  />
-                </div>
-              ))}
-            </div>
-            <InnerControllers section={section} />
+        <div className="entries">
+          <div className="entry">
+            {Object.entries(data).map(([field, value]) => (
+              <div data-field={field} key={field}>
+                <InlineEdit
+                  data-field={field}
+                  initialValue={value || `Enter ${field}`}
+                  onSave={(newValue) =>
+                    handleSave(newValue, section, field, entryIndex)
+                  }
+                />
+              </div>
+            ))}
           </div>
-        ))}
+          <InnerControllers section={section} />
+        </div>
       </div>
     </div>
   );
