@@ -1,12 +1,16 @@
 import "./BuilderNav.modules.css";
+
 import { IoMdMenu } from "react-icons/io";
 import { RiFontSansSerif } from "react-icons/ri";
 import { IoIosColorFilter } from "react-icons/io";
 import { FiSave } from "react-icons/fi";
 import { BsDownload } from "react-icons/bs";
 import { VscOpenPreview } from "react-icons/vsc";
+import { useCV } from "../context/CV";
 
 export const BuilderNav = () => {
+  // const { saveCV } = useCV();
+
   return (
     <div className="builder-controllers">
       <div className="logo-container">
