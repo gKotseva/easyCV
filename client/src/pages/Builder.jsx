@@ -1,10 +1,16 @@
 import "./Builder.modules.css";
 
-import { BuilderNav } from "../components/Builder/BuilderNav";
-import { BuilderSide } from "../components/Builder/BuilderSide";
-import { CVEditor } from "../components/Builder/CVEditor";
+import { BuilderNav } from "../components/BuilderNav";
+import { BuilderSide } from "../components/BuilderSide";
+import { CVEditor } from "../components/CVEditor";
+import { useSearchParams } from "react-router-dom";
 
 export const Builder = () => {
+  const [searchParams] = useSearchParams();
+
+  const columns = searchParams.get("columns");
+  const template = searchParams.get("template");
+
   return (
     <div className="builder-page-container">
       <BuilderNav />
@@ -18,7 +24,7 @@ export const Builder = () => {
         }}
       >
         <BuilderSide />
-        <CVEditor />
+        <CVEditor columns={columns} theme={template} />
       </div>
     </div>
   );
