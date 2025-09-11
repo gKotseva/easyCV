@@ -1,12 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export const InlineEdit = ({
   inputType = "text",
   initialValue = "",
   onSave,
+  forceEdit = false,
 }) => {
   const [value, setValue] = useState(initialValue);
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(forceEdit);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (forceEdit) {
+      setIsEditing(true);
+    }
+  }, [forceEdit]);
+
+  useEffect(() => {
+    if (isEditing && inputRef.current) {
+      inputRef.current.focus();
+      inputRef.current.select();
+    }
+  }, [isEditing]);
 
   const handleSave = () => {
     if (onSave) onSave(value);
@@ -15,7 +30,7 @@ export const InlineEdit = ({
 
   const commonProps = {
     value,
-    autoFocus: true,
+    ref: inputRef,
     onChange: (e) => setValue(e.target.value),
     onBlur: handleSave,
     onKeyDown: (e) => {
@@ -31,7 +46,17 @@ export const InlineEdit = ({
     inputType === "textarea" ? (
       <textarea {...commonProps} style={{ width: "100%", height: "10em" }} />
     ) : (
-      <input {...commonProps} style={{ width: "100%", height: "3em" }} />
+      <input
+        {...commonProps}
+        style={{
+          width: "100%",
+          border: "none",
+          borderBottom: "1px solid #00c8aa",
+          outline: "none",
+          padding: "0.2em 0.2em",
+          background: "transparent",
+        }}
+      />
     )
   ) : (
     <span onClick={() => setIsEditing(true)}>{value || "Click to edit"}</span>
