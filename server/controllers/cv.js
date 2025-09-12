@@ -1,76 +1,49 @@
 const {
+  documents,
+  deleteDocument,
+  renameDocument,
   getSections,
-  saveCV,
-  updateCV,
-  getDocuments,
 } = require("../db/cvQueries");
-const { buildSections } = require("../utils/cv");
 
 const router = require("express").Router();
 
-router.get("/sections", async (req, res) => {
-  try {
-    const data = await getSections();
-
-    res.status(201).json(data);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
-router.post("/save", async (req, res) => {
-  const { name, columns, theme, styling, sections, cvId } = req.body;
-  try {
-    const cvData = buildSections(sections);
-    const response = await saveCV(
-      1,
-      name,
-      theme,
-      columns,
-      JSON.stringify(cvData)
-    );
-
-    res.status(201).json({ cvId: response.insertId });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
-router.put("/update", async (req, res) => {
-  const { name, columns, theme, styling, sections, cvId } = req.body;
-  try {
-    const cvData = buildSections(sections);
-    const response = await updateCV(
-      name,
-      theme,
-      columns,
-      JSON.stringify(cvData),
-      cvId
-    );
-    res.status(201).json({ response });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
 router.get("/documents", async (req, res) => {
   const { userId } = req.query;
+
   try {
-    const documents = await getDocuments(userId);
-    const sections = await getSections();
-    const formattedDocuments = documents.map((doc) => {
-      const mergedSections = sections.map((section) => ({
-        ...section,
-        values: doc.data?.[section.section_id] || (section.multiple ? [] : {}),
-      }));
+    const result = await documents(userId);
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
-      return {
-        ...doc,
-        sections: mergedSections,
-      };
-    });
+router.delete("/delete", async (req, res) => {
+  const { cvId } = req.body;
 
-    res.status(201).json(formattedDocuments);
+  try {
+    const result = await deleteDocument(cvId);
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.put("/rename", async (req, res) => {
+  const { cvId, title } = req.body;
+
+  try {
+    const result = await renameDocument(cvId, title);
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.get("/sections", async (req, res) => {
+  try {
+    const result = await getSections();
+    res.status(201).json(result);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
