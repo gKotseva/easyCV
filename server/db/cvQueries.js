@@ -1,11 +1,29 @@
 const { executeQuery } = require("./db");
 
+exports.documents = (userId) => {
+  const query = `SELECT * FROM cv_details WHERE user_id=?`;
+
+  return executeQuery(query, [userId]);
+};
+
+exports.deleteDocument = (cvId) => {
+  const query = `DELETE FROM cv_details WHERE cv_id=?`;
+
+  return executeQuery(query, [cvId]);
+};
+
+exports.renameDocument = (cvId, title) => {
+  const query = `UPDATE cv_details SET title = ?, updated_at = NOW() WHERE cv_id = ?;`;
+
+  return executeQuery(query, [title, cvId]);
+};
+
 exports.getSections = () => {
   const query = `SELECT
   cs.cv_section_id   AS section_id,
   cs.cv_section_name AS section_name,
   cs.cv_section_label AS section_label,
-  cs.multiple,
+  cs.multiple AS multiple,
   CAST(
     CONCAT(
       '[',
@@ -19,25 +37,4 @@ JOIN section_fields sf
 GROUP BY cs.cv_section_id, cs.cv_section_name, cs.cv_section_label;`;
 
   return executeQuery(query);
-};
-
-exports.saveCV = (userId, title, theme, columns, data) => {
-  const query = `INSERT INTO cv_details(user_id, title, theme, columns, data) VALUES(?, ?, ?, ?, ?)`;
-
-  return executeQuery(query, [userId, title, theme, columns, data]);
-};
-
-exports.updateCV = (title, theme, columns, data, cvId) => {
-  const query = `
-        UPDATE cv_details
-        SET title = ?, theme = ?, columns = ?, data = ?
-        WHERE cv_id = ?
-      `;
-  return executeQuery(query, [title, theme, columns, data, cvId]);
-};
-
-exports.getDocuments = (userId) => {
-  const query = `SELECT * FROM cv_details WHERE user_id=?`;
-
-  return executeQuery(query, [userId]);
 };
