@@ -1,3 +1,11 @@
+import "./Loading.modules.css";
+
+import { PiReadCvLogoLight } from "react-icons/pi";
+
 export const Loading = () => {
-  return <div>Loading...</div>;
+  return (
+    <div className="loading-container">
+      <PiReadCvLogoLight className="spinner" />
+    </div>
+  );
 };
