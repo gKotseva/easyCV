@@ -1,20 +1,18 @@
-import {
-  PersonalInformation,
-  ContactInformation,
-  Summary,
-  ProfessionalExperience,
-  Education,
-  TechnicalSkills,
-  SoftSkills,
-  Languages,
-  Projects,
-  Certifications,
-  AwardsHonors,
-  HobbiesInterests,
-  References,
-} from "../../Test";
 import { SectionControllers } from "./SectionControllers";
 import { useCV } from "../../context/CV";
+import { PersonalInformation } from "../Sections/PersonalInformation";
+import { ContactInformation } from "../Sections/ContactInformation";
+import { Summary } from "../Sections/Summary";
+import { ProfessionalExperience } from "../Sections/ProfessionalExperience";
+import { Education } from "../Sections/Education";
+import { TechnicalSkills } from "../Sections/TechnicalSkills";
+import { SoftSkills } from "../Sections/SoftSkills";
+import { Languages } from "../Sections/Languages";
+import { Projects } from "../Sections/Projects";
+import { Certifications } from "../Sections/Certifications";
+import { AwardsHonors } from "../Sections/AwardsHonors";
+import { HobbiesInterests } from "../Sections/HobbiesInterests";
+import { References } from "../Sections/References";
 
 export const SectionRenderer = () => {
   const { cv, sections } = useCV();
