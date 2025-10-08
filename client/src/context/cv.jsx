@@ -12,7 +12,7 @@ export function CVProvider({ children }) {
     data: formatCVData(sections),
   }));
 
-  const editCV = (section, field, newValue, idx = 0) => {
+  const editCV = (section, field, newValue, id) => {
     setCv((prev) => {
       const newData = prev.data.map((d) => {
         const key = Object.keys(d)[0];
@@ -21,8 +21,8 @@ export function CVProvider({ children }) {
           const value = d[key];
 
           if (section.section_multiple) {
-            const updatedValue = value.map((item, i) =>
-              i === idx ? { ...item, [field]: newValue } : item
+            const updatedValue = value.map((item) =>
+              item._internalId === id ? { ...item, [field]: newValue } : item
             );
             return { [key]: updatedValue };
           } else {
@@ -55,7 +55,10 @@ export function CVProvider({ children }) {
         if (Number(key) === section.section_id) {
           const updatedArray = [
             ...d[key],
-            Object.fromEntries(section.section_fields.map((f) => [f, ""])),
+            {
+              _internalId: Date.now(),
+              ...Object.fromEntries(section.section_fields.map((f) => [f, ""])),
+            },
           ];
 
           return { [key]: updatedArray };
@@ -68,17 +71,19 @@ export function CVProvider({ children }) {
     });
   };
 
-  const removeSectionItem = (section, idxToRemove) => {
+  const removeSectionItem = (section, idToRemove) => {
     setCv((prev) => {
       const newData = prev.data.map((d) => {
         const key = Object.keys(d)[0];
 
         if (Number(key) === section.section_id && section.section_multiple) {
-          const updatedArray = d[key].filter((_, idx) => idx !== idxToRemove);
+          const updatedArray = d[key].filter(
+            (item) => item._internalId !== idToRemove
+          );
           return { [key]: updatedArray };
         }
 
-        return d;
+        return { ...d };
       });
 
       return { ...prev, data: newData };
