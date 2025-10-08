@@ -11,17 +11,22 @@ export const References = ({ section, sectionData }) => {
         <h1>{section.section_name}</h1>
       </div>
       <div className={`${section.section_label}-body`}>
-        {sectionData.map((item, idx) => (
-          <div className="section-item-wrapper" key={idx}>
+        {sectionData.map((item) => (
+          <div className="section-item-wrapper" key={item._internalId}>
             {section.section_fields.map((field) => (
               <InlineEdit
                 key={field}
                 field={field}
                 initialValue={item[field] || ""}
-                onSave={(newValue) => editCV(section, field, newValue, idx)}
+                onSave={(newValue) =>
+                  editCV(section, field, newValue, item._internalId)
+                }
               />
             ))}
-            <SectionInnerControllers section={section} removeId={idx} />
+            <SectionInnerControllers
+              section={section}
+              removeId={item._internalId}
+            />
           </div>
         ))}
       </div>
