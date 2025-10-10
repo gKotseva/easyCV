@@ -1,6 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300;1,300&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   background: #f5f5f5;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 200;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Rubik", sans-serif;
+  font-weight: 300;
+}
+
+.button {
+  font-family: "Rubik", sans-serif;
+  font-weight: bold;
+  border: none;
+  border-radius: 1em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: white;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.green {
+  background: radial-gradient(circle at top left, #89f09a, #00c853);
+}
+
+.blue {
+  background: radial-gradient(circle at top left, #9cdff7, #2979ff);
+}
+
+.orange {
+  background: radial-gradient(circle at top left, #fed789, #ff6d00);
 }
