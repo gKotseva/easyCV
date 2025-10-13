@@ -8,7 +8,9 @@ export const CVButtons = () => {
   return (
     <div style={{ display: "flex", gap: "0.5em" }}>
       {buttons.map((b) => (
-        <button className={`button ${b.class}`}>{b.name}</button>
+        <button className={`button ${b.class}`} key={b.name}>
+          {b.name}
+        </button>
       ))}
     </div>
   );
