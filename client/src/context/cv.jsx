@@ -1,16 +1,34 @@
 import { createContext, useContext, useState } from "react";
-import { sections } from "../testdata";
 import { formatCVData } from "../utils/formatCVData";
+import { useEffect } from "react";
+import { getSections } from "../handlers/cv";
 
 export const CVContext = createContext();
 
 export function CVProvider({ children }) {
+  const [sections, setSections] = useState(null);
   const [cv, setCv] = useState(() => ({
     cv_id: "9",
     user_id: "1",
     title: "Gabi",
-    data: formatCVData(sections),
+    data: {},
   }));
+
+  useEffect(() => {
+    const fetchSections = async () => {
+      const response = await getSections();
+      const formattedSections = formatCVData(response);
+
+      setCv((prev) => ({
+        ...prev,
+        data: formattedSections,
+      }));
+
+      setSections(response);
+    };
+
+    fetchSections();
+  }, []);
 
   const editCV = (section, field, newValue, id) => {
     setCv((prev) => {
