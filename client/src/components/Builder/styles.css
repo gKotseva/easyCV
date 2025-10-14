@@ -1,0 +1,57 @@
+/* ----------------------- Section wrapper ----------------------- */
+.section-wrapper {
+  position: relative;
+}
+
+/* ----------------------- Main controllers (top-right) ----------------------- */
+.controllers {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.section-wrapper:hover .controllers {
+  opacity: 1;
+}
+
+/* ----------------------- Section body spacing ----------------------- */
+.section-content {
+  padding-right: 32px;
+}
+
+/* ----------------------- Inner controllers below items ----------------------- */
+.section-item-wrapper {
+  position: relative;
+}
+
+.inner-controllers {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.section-item-wrapper:hover .inner-controllers {
+  opacity: 1;
+}
+
+/* ----------------------- General container for all sections ----------------------- */
+div[class$="-container"] {
+  margin-bottom: 1em;
+}
+
+/* ----------------------- Section headings ----------------------- */
+div[class$="-heading"] h1 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+/* ----------------------- Section body ----------------------- */
+div[class$="-body"] {
+  padding-left: 1em;
+}

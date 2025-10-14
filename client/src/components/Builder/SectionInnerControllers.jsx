@@ -1,3 +1,5 @@
+import "./styles.css";
+
 import { IoIosAddCircle } from "react-icons/io";
 import { MdOutlineRemoveCircle } from "react-icons/md";
 import { useCV } from "../../context/CV";

@@ -1,3 +1,5 @@
+import "./styles.css";
+
 import { SectionControllers } from "./SectionControllers";
 import { useCV } from "../../context/CV";
 import { PersonalInformation } from "../Sections/PersonalInformation";

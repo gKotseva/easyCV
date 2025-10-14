@@ -1,3 +1,5 @@
+import "./styles.css";
+
 import { IoIosReorder } from "react-icons/io";
 import { GoTrash } from "react-icons/go";
 import { useCV } from "../../context/CV";
