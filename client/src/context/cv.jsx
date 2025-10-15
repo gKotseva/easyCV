@@ -108,6 +108,15 @@ export function CVProvider({ children }) {
     });
   };
 
+  const addSection = (section) => {
+    const formatted = formatCVData([section]);
+
+    setCv((prev) => ({
+      ...prev,
+      data: [...prev.data, ...formatted],
+    }));
+  };
+
   return (
     <CVContext.Provider
       value={{
@@ -118,6 +127,7 @@ export function CVProvider({ children }) {
         removeSection,
         addSectionItem,
         removeSectionItem,
+        addSection,
       }}
     >
       {children}
